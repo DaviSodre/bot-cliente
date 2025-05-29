@@ -11,7 +11,7 @@ def get_cartas_atualizadas():
 
 
 
-print("MONGO_URI =", os.getenv("MONGO_URI"))
+
 
 IDS_AUTORIZADOS = [209387134715559946, 1069582140834066442]  
 
