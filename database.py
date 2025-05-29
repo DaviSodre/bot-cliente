@@ -4,9 +4,9 @@ import motor.motor_asyncio
 
 
 
-MONGO_URL = MONGO_URI
+MONGO_URI = os.getenv("MONGO_URI")
 
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
 
 db = client["kpopbot"]
 usuarios = db["usuarios"]
