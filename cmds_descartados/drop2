@@ -1,0 +1,46 @@
+import random
+import discord
+from discord.ext import commands
+from utils.imagens import juntar_imagens_lado_a_lado
+from database import get_usuario, update_usuario
+from cartas import cartas_disponiveis
+
+class Drop2(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+@commands.cooldown(1, 0, commands.BucketType.user)
+async def drop2(ctx):
+    carta = random.choice(cartas_disponiveis)
+    user_id = ctx.author.id
+    
+    user_data = await get_usuario(user_id)
+    user_cartas = user_data.get("cartas", [])
+    
+    if carta['id'] in user_cartas:
+        # já tem a carta, dá moedas no lugar
+        moedas_ganhas = 50
+        user_data["moedas"] = user_data.get("moedas", 0) + moedas_ganhas
+        await update_usuario(user_id, {"moedas": user_data["moedas"]})
+        
+        embed = discord.Embed(
+            title="Carta repetida!",
+            description=f"Você já tem a carta **{carta['nome']}**, então recebeu {moedas_ganhas} moedas no lugar.",
+            color=discord.Color.gold()
+        )
+    else:
+        # adiciona a carta
+        user_cartas.append(carta['id'])
+        await update_usuario(user_id, {"cartas": user_cartas})
+        
+        embed = discord.Embed(
+            title="Você recebeu uma carta!",
+            description=f"**{carta['nome']}**\nGrupo: {carta['grupo']}\nRaridade: {carta['raridade']}",
+            color=discord.Color.gold()
+        )
+        embed.set_image(url=carta['imagem'])
+    
+    await ctx.send(embed=embed)
+
+    # isso aqui é OBRIGATÓRIO pra carregar como extensão
+async def setup(bot):
+    await bot.add_cog(drop2(bot))
