@@ -10,8 +10,7 @@ def get_cartas_atualizadas():
     return cartas.cartas_disponiveis  # retorna a lista atualizada
 
 
-from dotenv import load_dotenv
-load_dotenv()
+
 print("MONGO_URI =", os.getenv("MONGO_URI"))
 
 IDS_AUTORIZADOS = [209387134715559946, 1069582140834066442]  
@@ -47,4 +46,4 @@ async def load_cogs():
 async def on_connect():
     await load_cogs()
 
-bot.run(os.getenv("DISCORD_TOKEN"))
+bot.run(DISCORD_TOKEN)
