@@ -46,4 +46,6 @@ async def load_cogs():
 async def on_connect():
     await load_cogs()
 
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+
 bot.run(DISCORD_TOKEN)
