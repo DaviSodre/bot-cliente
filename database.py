@@ -1,12 +1,12 @@
 import os
 import motor.motor_asyncio
-from dotenv import load_dotenv
 
-load_dotenv()  # carrega o .env
 
-MONGO_URI = os.getenv("MONGO_URI")
 
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI)
+
+MONGO_URL = MONGO_URI
+
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
 
 db = client["kpopbot"]
 usuarios = db["usuarios"]
