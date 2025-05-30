@@ -15,6 +15,7 @@ class InventoryView(discord.ui.View):
     async def get_filtered_cards(self):
         user_data = await get_usuario(self.user_id)
         user_cards = user_data.get("cartas", [])  # lista com repetições
+        
 
         # contar quantas vezes cada carta aparece
         carta_counts = Counter(user_cards)
@@ -33,6 +34,7 @@ class InventoryView(discord.ui.View):
                 "nome": carta["nome"],
                 "id": carta["id"],
                 "grupo": carta["grupo"],
+                "era": carta.get("era", "Desconhecida"),
                 "raridade": carta["raridade"],
                 "quantidade": quantidade
             })
@@ -62,7 +64,8 @@ class InventoryView(discord.ui.View):
                 value=(
                     f"Grupo: {carta['grupo']}\n"
                     f"Quantidade: {carta['quantidade']}\n"
-                    f"Raridade: {carta['raridade']}"
+                    f"Raridade: {carta['raridade']}\n"
+                    f"Era: {carta['era']}"
                 ),
                 inline=True
             )
