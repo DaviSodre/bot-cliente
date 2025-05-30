@@ -30,6 +30,8 @@ class InventoryView(discord.ui.View):
                 continue
             if self.raridade and carta["raridade"].lower() != self.raridade.lower():
                 continue
+            if self.era and carta["era"].lower() != self.era.lower():
+                continue
             cartas_info.append({
                 "nome": carta["nome"],
                 "id": carta["id"],
