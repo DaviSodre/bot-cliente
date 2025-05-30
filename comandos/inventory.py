@@ -5,11 +5,12 @@ from cartas import cartas_disponiveis
 from collections import Counter
 
 class InventoryView(discord.ui.View):
-    def __init__(self, user_id, grupo=None, raridade=None, page=0):
+    def __init__(self, user_id, grupo=None, raridade=None, era=None, page=0):
         super().__init__(timeout=120)
         self.user_id = user_id
         self.grupo = grupo
         self.raridade = raridade
+        self.era = era
         self.page = page
 
     async def get_filtered_cards(self):
@@ -99,9 +100,9 @@ class Inventory(commands.Cog):
         self.bot = bot
 
     @discord.app_commands.command(name="inventory", description="Mostra seu inventário de cartas")
-    @discord.app_commands.describe(grupo="Filtrar por grupo da carta", raridade="Filtrar por raridade da carta")
-    async def inventory(self, interaction: discord.Interaction, grupo: str = None, raridade: str = None):
-        view = InventoryView(interaction.user.id, grupo=grupo, raridade=raridade)
+    @discord.app_commands.describe(grupo="Filtrar por grupo da carta", raridade="Filtrar por raridade da carta", , era="Filtrar por era da carta")
+    async def inventory(self, interaction: discord.Interaction, grupo: str = None, raridade: str = None, era: str = None):
+        view = InventoryView(interaction.user.id, grupo=grupo, raridade=raridade, era=era)
         embed = await view.get_embed()
         await interaction.response.send_message(embed=embed, view=view)
 
