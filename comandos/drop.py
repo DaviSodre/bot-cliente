@@ -4,6 +4,7 @@ from discord.ext import commands
 from utils.imagens import juntar_imagens_lado_a_lado
 from database import get_usuario, update_usuario
 from cartas import cartas_disponiveis
+from utils.conquistas import atualizar_conquistas
 import time
 
 probabilidades = {
@@ -112,6 +113,9 @@ class ClaimButton(discord.ui.Button):
                 f"🎉 Você pegou a carta **{self.carta['nome']}**!",
                 ephemeral=True
             )
+            mensagens = await atualizar_conquistas(user_data, self.carta, user_id)
+            for msg in mensagens:
+                await interaction.followup.send(msg)
 
 class Drop(commands.Cog):
     def __init__(self, bot):
