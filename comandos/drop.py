@@ -6,6 +6,17 @@ from database import get_usuario, update_usuario
 from cartas import cartas_disponiveis
 import time
 
+probabilidades = {
+    "Comum": 80,
+    "Rara": 29,
+    "Épica": 1
+}
+
+def sortear_raridade():
+    raridades = list(probabilidades.keys())
+    pesos = list(probabilidades.values())
+    return random.choices(raridades, weights=pesos, k=1)[0]
+
 claim_cooldowns = {}
 
 class ClaimView(discord.ui.View):
@@ -35,9 +46,10 @@ class ClaimView(discord.ui.View):
 
         for i, carta in enumerate(self.cartas):
             pego_por = self.reivindicadas.get(i, "Ninguém pegou")
+            era = carta.get("era", "Desconhecida")
             resultado_embed.add_field(
                 name=f"{carta['nome']}",
-                value=f"👤 Dono: **{pego_por}**\n🧪 Raridade: {carta['raridade']}\n🆔 ID: `{carta['id']}`",
+                value=f"👤 Dono: **{pego_por}**\n🧪 Raridade: {carta['raridade']}\n📀 Era: {era}\n🆔 ID: `{carta['id']}`",
                 inline=True
             )
 
@@ -108,9 +120,24 @@ class Drop(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def drop(self, ctx):
-        cartas_sorteadas = random.sample(cartas_disponiveis, 3)
-        imagem_paths = [c["imagem"] for c in cartas_sorteadas]
-        caminho = juntar_imagens_lado_a_lado(imagem_paths)
+        cartas_sorteadas = []
+        usadas = set()
+
+        while len(cartas_sorteadas) < 3:
+            raridade = sortear_raridade()
+            candidatas = [c for c in cartas_disponiveis if c["raridade"] == raridade and c["id"] not in usadas]
+
+            if not candidatas:
+                continue
+            carta = random.choice(candidatas)
+            usadas.add(carta["id"])
+            cartas_sorteadas.append(carta)
+
+        cartas_para_juntar = [
+            {"url": carta["imagem"], "raridade": carta["raridade"]}
+            for carta in cartas_sorteadas
+]
+        caminho = juntar_imagens_lado_a_lado(cartas_para_juntar)
 
         embed = discord.Embed(
             title="🎴 Drop de Cartas!",
