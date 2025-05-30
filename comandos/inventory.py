@@ -100,7 +100,7 @@ class Inventory(commands.Cog):
         self.bot = bot
 
     @discord.app_commands.command(name="inventory", description="Mostra seu inventário de cartas")
-    @discord.app_commands.describe(grupo="Filtrar por grupo da carta", raridade="Filtrar por raridade da carta", , era="Filtrar por era da carta")
+    @discord.app_commands.describe(grupo="Filtrar por grupo da carta", raridade="Filtrar por raridade da carta", era="Filtrar por era da carta")
     async def inventory(self, interaction: discord.Interaction, grupo: str = None, raridade: str = None, era: str = None):
         view = InventoryView(interaction.user.id, grupo=grupo, raridade=raridade, era=era)
         embed = await view.get_embed()
