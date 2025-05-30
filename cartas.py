@@ -4,6 +4,7 @@ cartas_disponiveis = [
         "nome": "Rosé",
         "grupo": "BLACKPINK",
         "raridade": "Épica",
+        "era": "Pink Venom",
         "imagem": "https://i.pinimg.com/736x/98/8a/48/988a48ca90e400c8cf58725d94fd1312.jpg"
     },
     {
@@ -11,6 +12,7 @@ cartas_disponiveis = [
         "nome": "Jisoo",
         "grupo": "BLACKPINK",
         "raridade": "Rara",
+        "era": "Flower",
         "imagem": "https://dbkpop.com/wp-content/uploads/2023/03/blackpink_jisoo_me_flower_teaser_poster_2-768x1152.jpg"
     },
     {
@@ -18,6 +20,7 @@ cartas_disponiveis = [
         "nome": "Sana",
         "grupo": "TWICE",
         "raridade": "Comum",
+        "era": "Photocard",
         "imagem": "https://i.pinimg.com/736x/f5/ac/a9/f5aca954148d3bbdea3ba041658be32d.jpg"
     },
     
@@ -26,6 +29,7 @@ cartas_disponiveis = [
         "nome": "Karina",
         "grupo": "AESPA",
         "raridade": "Lendária",
+        "era": "Photocard",
         "imagem": "https://i.pinimg.com/736x/ae/39/95/ae3995f1bc074aba5a4b7b632bea2819.jpg"
     },
     {
@@ -33,6 +37,7 @@ cartas_disponiveis = [
         "nome": "Jennie",
         "grupo": "BLACKPINK",
         "raridade": "Rara",
+        "era": "The Album (HYLT)",
         "imagem": "https://i.pinimg.com/736x/eb/b9/b1/ebb9b1dd8ba91ad735df8fb39df7ef75.jpg"
     },
      {
@@ -40,6 +45,7 @@ cartas_disponiveis = [
         "nome": "Momo",
         "grupo": "TWICE",
         "raridade": "Épica",
+        "era": "Between 1&2",
         "imagem": "https://i.pinimg.com/736x/d6/70/0e/d6700ef5c8a7b4bd640e58b59d5a2dde.jpg"
     },
     {
@@ -47,6 +53,7 @@ cartas_disponiveis = [
         "nome": "Karina",
         "grupo": "AESPA",
         "raridade": "Rara",
+        "era": "Drama",
         "imagem": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTo8EkEDehSgt_MYTRiXBKaY9rPvMMJmftfT5sZIrCNq32aYpIa"
     },
     {
@@ -54,6 +61,7 @@ cartas_disponiveis = [
         "nome": "Giselle",
         "grupo": "AESPA",
         "raridade": "Rara",
+        "era": "Drama",
         "imagem": "https://i.pinimg.com/236x/b9/ee/04/b9ee049af75223e35e97e179fc1e1882.jpg"
     },
     {
@@ -61,6 +69,7 @@ cartas_disponiveis = [
         "nome": "Ningning",
         "grupo": "AESPA",
         "raridade": "Rara",
+        "era": "Drama",
         "imagem": "https://preview.redd.it/aespa-drama-teaser-images-the-giants-ningning-v0-pnx6oetp5svb1.png?width=640&crop=smart&auto=webp&s=283648c6f6e3d4bfc5d592395c551bbe27f54f49"
     },
     {
@@ -68,6 +77,7 @@ cartas_disponiveis = [
         "nome": "Winter",
         "grupo": "AESPA",
         "raridade": "Rara",
+        "era": "Drama",
         "imagem": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT-7p2gXxsUNxBX48sPeinU0gnOtjHnBU0cQ4VjBjFDrUmC-Z1Y"
     },
     {
@@ -75,6 +85,7 @@ cartas_disponiveis = [
         "nome": "Hanni",
         "grupo": "NEW JEANS",
         "raridade": "Rara",
+        "era": "Get Up",
         "imagem": "https://i.pinimg.com/736x/ad/92/a8/ad92a8a6ac100aebec21e18630325346.jpg"
     },
     {
@@ -82,34 +93,32 @@ cartas_disponiveis = [
         "nome": "Hanni",
         "grupo": "NEW JEANS",
         "raridade": "Épica",
+        "era": "Get Up Weverse Ver",
         "imagem": "https://pbs.twimg.com/media/F1mN5faX0AAcMwB?format=jpg&name=large"
     },
     {
         "id": "026",
         "nome": "Haerin",
         "grupo": "NEW JEANS",
-        "raridade": "Rara",
-        "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhs41GpsTC1VR2MYafCKO-7bGMja34-iOV5w&s"
+        "raridade": "Épica",
+        "era": "Supernatural",
+        "imagem": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSfnv12I0LtCA1Vx1g2xcSk8wMCU5no0kivniOD5gl5DMhOiE9s"
     },
     {
         "id": "027",
         "nome": "Haerin",
         "grupo": "NEW JEANS",
-        "raridade": "Épica",
+        "raridade": "Rara",
+        "era": "OMG",
         "imagem": "https://64.media.tumblr.com/0805501c2a7895b5af3a17b65f997818/55c96c3aeed310b8-d7/s1280x1920/e9fafc2b31da19a5e07cb4c06e4b65890cbc929b.jpg"
     },
-     {
-        "id": "028",
-        "nome": "Haerin",
-        "grupo": "NEW JEANS",
-        "raridade": "Épica",
-        "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhs41GpsTC1VR2MYafCKO-7bGMja34-iOV5w&s"
-    },
+     
     {
         "id": "029",
         "nome": "Hyein",
         "grupo": "NEW JEANS",
         "raridade": "Rara",
+        "era": "Get Up",
         "imagem": "https://i.pinimg.com/736x/0f/a1/ba/0fa1badf8567036f2717fe5bdd143604.jpg"
     },
     {
@@ -117,6 +126,7 @@ cartas_disponiveis = [
         "nome": "Hyein",
         "grupo": "NEW JEANS",
         "raridade": "Épica",
+        "era": "OMG",
         "imagem": "https://64.media.tumblr.com/b926ea22adc9d91b76ab00e3c080c4e8/2a260927b365f5eb-08/s540x810/958ec958f8b7a8cdc551a35951202dd097f759c9.jpg"
     },
     {
@@ -124,6 +134,7 @@ cartas_disponiveis = [
         "nome": "Danielle",
         "grupo": "NEW JEANS",
         "raridade": "Rara",
+        "era": "New Jeans Ver",
         "imagem": "https://i.pinimg.com/736x/4f/fc/fd/4ffcfd7c33263ab76393877be42e8f18.jpg"
     },
     {
@@ -131,13 +142,15 @@ cartas_disponiveis = [
         "nome": "Danielle",
         "grupo": "NEW JEANS",
         "raridade": "Épica",
-        "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvcXXne43_S9c3EnCrj_MekgWwMvWvFhjZ5Q&s"
+        "era": "OMG",
+        "imagem": "https://64.media.tumblr.com/1f4b5adc7732005594e113f3050d4365/611d82f7655b624c-f8/s540x810/190ef63856bc5c3075b198f02cb94cb7e2e1df90.jpg"
     },
     {
         "id": "033",
         "nome": "Minji",
         "grupo": "NEW JEANS",
         "raridade": "Rara",
+        "era": "Get UP",
         "imagem": "https://i.pinimg.com/736x/76/fb/d2/76fbd2b5abc127d79829ba86610d7fd6.jpg"
     },
     {
@@ -145,6 +158,7 @@ cartas_disponiveis = [
         "nome": "Minji",
         "grupo": "NEW JEANS",
         "raridade": "Épica",
+        "era": "OMG",
         "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxPrWRAqZzAUvyc919TBjv7PR_6RxyYvB55A&s"
     },
     {
@@ -152,6 +166,7 @@ cartas_disponiveis = [
         "nome": "Chaeyoung",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/7Y94K9D2/chaeyoung1.png"
     },
     {
@@ -159,6 +174,7 @@ cartas_disponiveis = [
         "nome": "Chaeyoung",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/x897HrXF/chaeyoung2.png"
     },
     {
@@ -166,6 +182,7 @@ cartas_disponiveis = [
         "nome": "Chaeyoung",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/9Qsnbw49/chaeyoung3.png"
     },
     {
@@ -173,6 +190,7 @@ cartas_disponiveis = [
         "nome": "Dahyun",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy", 
         "imagem": "https://i.postimg.cc/Gm4fvxpr/dahyun1.png"
     },
     {
@@ -180,6 +198,7 @@ cartas_disponiveis = [
         "nome": "Dahyun",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/DZTYkVPy/dahyun2.png"
     },
     {
@@ -187,6 +206,7 @@ cartas_disponiveis = [
         "nome": "Dahyun",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/SRKdkm2q/dahyun3.png"
     },
     {
@@ -194,13 +214,15 @@ cartas_disponiveis = [
         "nome": "Jeongyeon",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/Dy86Ny3P/jeongyeon1.png"
     },
     {
         "id": "108",
         "nome": "Jeongyeon",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/WbC8cL2L/jeongyeon2.png"
     },
     {
@@ -208,6 +230,7 @@ cartas_disponiveis = [
         "nome": "Jeongyeon",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/DzKcmrJx/jeongyeon3.png"
     },
     {
@@ -215,13 +238,15 @@ cartas_disponiveis = [
         "nome": "Jihyo",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/3x2XMkSm/jihyo1.png"
     },
     {
         "id": "111",
         "nome": "Jihyo",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/QMbctRrM/jihyo2.png"
     },
     {
@@ -229,13 +254,15 @@ cartas_disponiveis = [
         "nome": "Jihyo",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/9F7TT4jK/jihyo3.png"
     },
     {
         "id": "113",
         "nome": "Mina",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/hGS7Hp7R/mina1.png"
     },
     {
@@ -243,6 +270,7 @@ cartas_disponiveis = [
         "nome": "Mina",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/nV626fV8/mina2.png"
     },
     {
@@ -250,6 +278,7 @@ cartas_disponiveis = [
         "nome": "Mina",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/YC73CNmb/mina3.png"
     },
     {
@@ -257,13 +286,15 @@ cartas_disponiveis = [
         "nome": "Momo",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/G26PwvCP/momo1.png"
     },
     {
         "id": "117",
         "nome": "Momo",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/1Xc8CF53/momo2.png"
     },
     {
@@ -271,6 +302,7 @@ cartas_disponiveis = [
         "nome": "Momo",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/TY0ynn4k/momo3.png"
     },
     {
@@ -278,13 +310,15 @@ cartas_disponiveis = [
         "nome": "Nayeon",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/VLmrSKDr/nayeon1.png"
     },
     {
         "id": "120",
         "nome": "Nayeon",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/4x3YPmCX/nayeon2.png"
     },
     {
@@ -292,6 +326,7 @@ cartas_disponiveis = [
         "nome": "Nayeon",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/XJKN4bM2/nayeon3.png"
     },
     {
@@ -299,6 +334,7 @@ cartas_disponiveis = [
         "nome": "Sana",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/ydC6MNGg/sana1.png"
     },
     {
@@ -306,20 +342,22 @@ cartas_disponiveis = [
         "nome": "Sana",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/02Xk8n3q/sana3.png"
     },
     {
         "id": "124",
         "nome": "Sana",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
         "imagem": "https://i.postimg.cc/rFwyX3fJ/sana2.png"
     },
     {
         "id": "125",
         "nome": "Tzuyu",
         "grupo": "TWICE",
-        "raridade": "Rara",
+        "raridade": "Comum",
+        "era": "Strategy",
         "imagem": "https://i.postimg.cc/dtfFM1ks/tzuyu1.png"
     },
     {
@@ -327,6 +365,7 @@ cartas_disponiveis = [
         "nome": "Tzuyu",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/jjrGKJsb/tzuyu2.png"
     },
     {
@@ -334,6 +373,7 @@ cartas_disponiveis = [
         "nome": "Tzuyu",
         "grupo": "TWICE",
         "raridade": "Rara",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/L6JdVpyr/tzuyu3.png"
     }
 ]
