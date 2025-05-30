@@ -146,6 +146,195 @@ cartas_disponiveis = [
         "grupo": "NEW JEANS",
         "raridade": "Épica",
         "imagem": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxPrWRAqZzAUvyc919TBjv7PR_6RxyYvB55A&s"
+    },
+    {
+        "id": "101",
+        "nome": "Chaeyoung",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/7Y94K9D2/chaeyoung1.png"
+    },
+    {
+        "id": "102",
+        "nome": "Chaeyoung",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/x897HrXF/chaeyoung2.png"
+    },
+    {
+        "id": "103",
+        "nome": "Chaeyoung",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/9Qsnbw49/chaeyoung3.png"
+    },
+    {
+        "id": "104",
+        "nome": "Dahyun",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/Gm4fvxpr/dahyun1.png"
+    },
+    {
+        "id": "105",
+        "nome": "Dahyun",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/DZTYkVPy/dahyun2.png"
+    },
+    {
+        "id": "106",
+        "nome": "Dahyun",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/SRKdkm2q/dahyun3.png"
+    },
+    {
+        "id": "107",
+        "nome": "Jeongyeon",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/Dy86Ny3P/jeongyeon1.png"
+    },
+    {
+        "id": "108",
+        "nome": "Jeongyeon",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/WbC8cL2L/jeongyeon2.png"
+    },
+    {
+        "id": "109",
+        "nome": "Jeongyeon",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/DzKcmrJx/jeongyeon3.png"
+    },
+    {
+        "id": "110",
+        "nome": "Jihyo",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/3x2XMkSm/jihyo1.png"
+    },
+    {
+        "id": "111",
+        "nome": "Jihyo",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/QMbctRrM/jihyo2.png"
+    },
+    {
+        "id": "112",
+        "nome": "Jihyo",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/9F7TT4jK/jihyo3.png"
+    },
+    {
+        "id": "113",
+        "nome": "Mina",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/hGS7Hp7R/mina1.png"
+    },
+    {
+        "id": "114",
+        "nome": "Mina",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/nV626fV8/mina2.png"
+    },
+    {
+        "id": "115",
+        "nome": "Mina",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/YC73CNmb/mina3.png"
+    },
+    {
+        "id": "116",
+        "nome": "Momo",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/G26PwvCP/momo1.png"
+    },
+    {
+        "id": "117",
+        "nome": "Momo",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/1Xc8CF53/momo2.png"
+    },
+    {
+        "id": "118",
+        "nome": "Momo",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/TY0ynn4k/momo3.png"
+    },
+    {
+        "id": "119",
+        "nome": "Nayeon",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/VLmrSKDr/nayeon1.png"
+    },
+    {
+        "id": "120",
+        "nome": "Nayeon",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/4x3YPmCX/nayeon2.png"
+    },
+    {
+        "id": "121",
+        "nome": "Nayeon",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/XJKN4bM2/nayeon3.png"
+    },
+    {
+        "id": "122",
+        "nome": "Sana",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/ydC6MNGg/sana1.png"
+    },
+    {
+        "id": "123",
+        "nome": "Sana",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/02Xk8n3q/sana3.png"
+    },
+    {
+        "id": "124",
+        "nome": "Sana",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/rFwyX3fJ/sana2.png"
+    },
+    {
+        "id": "125",
+        "nome": "Tzuyu",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/dtfFM1ks/tzuyu1.png"
+    },
+    {
+        "id": "126",
+        "nome": "Tzuyu",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/jjrGKJsb/tzuyu2.png"
+    },
+    {
+        "id": "127",
+        "nome": "Tzuyu",
+        "grupo": "TWICE",
+        "raridade": "Rara",
+        "imagem": "https://i.postimg.cc/L6JdVpyr/tzuyu3.png"
     }
 ]
 
