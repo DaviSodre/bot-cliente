@@ -1,6 +1,6 @@
 import discord
 
-def criar_embed_carta_preview(carta, usuario):
+def criar_embed_carta_preview(carta, usuario, interaction.client, bot):
     nome = usuario.display_name if hasattr(usuario, "display_name") else usuario.get("nome", "Desconhecido")
     avatar_url = usuario.display_avatar.url if hasattr(usuario, "display_avatar") else ""
 
