@@ -74,9 +74,9 @@ class PerfilCog(commands.Cog):
                         f"• Épicas: {len(epicas_usuario)}/{len(epicas)}",
             color=discord.Color.purple()
         )
-        embed.add_field(name="🎤 Grupo com mais cartas", value=grupo_top, inline=False)
-        embed.add_field(name="📀 Era com mais cartas", value=era_top, inline=False)
-        embed.add_field(name="💰 Dinheiro", value=f"{usuario.get('moedas', 0)} moedas", inline=False)
+        embed.add_field(name="🎤 Grupo com mais cartas", value=grupo_top, inline=True)
+        embed.add_field(name="📀 Era com mais cartas", value=era_top, inline=True)
+        embed.add_field(name="💰 Dinheiro", value=f"{usuario.get('moedas', 0)} moedas", inline=True)
         embed.set_footer(text="Perfil do Usuário", icon_url=interaction.user.display_avatar.url)
         embed.set_thumbnail(url=interaction.user.avatar.url)
 
