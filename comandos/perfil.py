@@ -76,7 +76,7 @@ class PerfilCog(commands.Cog):
         embed.add_field(name="🎤 Grupo com mais cartas", value=grupo_top, inline=False)
         embed.add_field(name="📀 Era com mais cartas", value=era_top, inline=False)
         embed.add_field(name="💰 Dinheiro", value=f"{usuario.get('moedas', 0)} moedas", inline=False)
-        embed.set_footer(text="Perfil do Usuário", icon_url=interaction.client.user.avatar.url)
+        embed.set_footer(text="Perfil do Usuário", icon_url=interaction.user.avatar.url)
         embed.set_thumbnail(url=interaction.user.avatar.url)
 
         if imagem_url:
