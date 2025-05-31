@@ -73,7 +73,7 @@ class DarCartaCog(commands.Cog):
             await interaction.response.send_message("❌ Carta com esse ID não encontrada.", ephemeral=True)
             return
 
-        embed = criar_embed_carta_preview(carta, usuario, interaction.client)
+        embed = criar_embed_carta_preview(carta, usuario, interaction.client, bot)
 
         view = ConfirmDarCartaView(carta, usuario_data, usuario, interaction.user.id)
         await interaction.response.send_message(embed=embed, view=view)
