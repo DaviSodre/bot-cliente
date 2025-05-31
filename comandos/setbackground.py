@@ -26,17 +26,27 @@ class SetBackgroundCog(commands.Cog):
             await interaction.followup.send("❌ Carta com esse ID não encontrada.", ephemeral=True)
             return
 
-        # verifica se usuário possui a carta
         cartas_ids_usuario = usuario.get("cartas", [])
         if carta_id not in cartas_ids_usuario:
             await interaction.followup.send("❌ Você não possui essa carta.", ephemeral=True)
             return
 
-        # atualiza background
+        # atualiza background no banco
         usuario["background"] = carta_id
         await update_usuario(interaction.user.id, usuario)
 
-        await interaction.followup.send(f"✅ Background setado para a carta **{carta_escolhida['nome']}**!")
+        # escolhe url da imagem: gif se tiver, senão imagem normal
+        url_imagem = carta_escolhida.get("gif") or carta_escolhida.get("imagem")
+
+        embed = discord.Embed(
+            title="✅ Background atualizado!",
+            description=f"Sua imagem de perfil foi atualizada para a carta **{carta_escolhida['nome']}**.",
+            color=discord.Color.green()
+        )
+        if url_imagem:
+            embed.set_image(url=url_imagem)
+
+        await interaction.followup.send(embed=embed, ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(SetBackgroundCog(bot))
