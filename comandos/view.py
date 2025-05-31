@@ -38,12 +38,16 @@ class ViewCarta(commands.Cog):
             title=f"{carta['nome']} (ID: {carta['id']})",
             color=discord.Color.blurple()
         )
-        embed.add_field(name="🎤 Grupo", value=carta.get("grupo", "Desconhecido"), inline=True)
-        embed.add_field(name="📀 Era", value=carta.get("era", "Desconhecida"), inline=True)
-        embed.add_field(name="⭐ Raridade", value=carta.get("raridade", "Desconhecida"), inline=True)
 
-        # imagem ou gif
         imagem_url = carta.get("gif") or carta.get("imagem")
+        is_gif = imagem_url.endswith(".gif") if imagem_url else False
+
+        inline_val = True if is_gif else False
+
+        embed.add_field(name="🎤 Grupo", value=carta.get("grupo", "Desconhecido"), inline=inline_val)
+        embed.add_field(name="📀 Era", value=carta.get("era", "Desconhecida"), inline=inline_val)
+        embed.add_field(name="⭐ Raridade", value=carta.get("raridade", "Desconhecida"), inline=inline_val)
+
         if imagem_url:
             embed.set_image(url=imagem_url)
 
