@@ -62,7 +62,8 @@ class PerfilCog(commands.Cog):
             else:
                 carta_background = None
         # Imagem de fundo
-        imagem_url = carta_background["imagem"] if carta_background else None
+        imagem_url = carta_background.get("gif") or carta_background.get("imagem") if carta_background else None
+
         
 
         embed = discord.Embed(
