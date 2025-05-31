@@ -32,6 +32,11 @@ async def on_ready():
     print("Comandos sincronizados!")
     print(f'bot conectado como {bot.user}')
 
+    await bot.change_presence(
+        status=discord.Status.dnd,  
+        activity=discord.Game(name="Colecinando algumas cartas 🎤")
+    )
+
 async def load_cogs():
     for filename in os.listdir("./comandos"):
         if filename.endswith(".py"):
