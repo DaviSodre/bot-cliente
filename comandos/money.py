@@ -16,6 +16,7 @@ class VerMoedasCog(commands.Cog):
             description=f"Você tem **{moedas} moedas**.",
             color=discord.Color.gold()
         )
+        embed.set_footer(text="Bot desenvolvido por TwiceFla & Kendo", icon_url=self.bot.user.avatar.url)
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
     @app_commands.command(name="coins", description="Veja quantas moedas você tem")
