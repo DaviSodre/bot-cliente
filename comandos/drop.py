@@ -69,7 +69,7 @@ class ClaimButton(discord.ui.Button):
 
         now = time.time()
         last_claim = claim_cooldowns.get(user_id, 0)
-        cooldown_time = 5
+        cooldown_time = 30
 
         if now - last_claim < cooldown_time:
             restante = int(cooldown_time - (now - last_claim))
