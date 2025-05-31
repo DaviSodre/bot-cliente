@@ -98,24 +98,16 @@ class ClaimButton(discord.ui.Button):
         user_data = await get_usuario(user_id)
         user_cartas = user_data.get("cartas", [])
 
-        if self.carta["id"] in user_cartas:
-            moedas = 50
-            user_data["moedas"] = user_data.get("moedas", 0) + moedas
-            await update_usuario(user_id, {"moedas": user_data["moedas"]})
-            await interaction.response.send_message(
-                f"💰 Você pegou **{self.carta['nome']}**, mas já tinha. Ganhou {moedas} moedas.",
-                ephemeral=True
-            )
-        else:
-            user_cartas.append(self.carta["id"])
-            await update_usuario(user_id, {"cartas": user_cartas})
-            await interaction.response.send_message(
-                f"🎉 Você pegou a carta **{self.carta['nome']}**!",
-                ephemeral=True
-            )
-            mensagens = await atualizar_conquistas(user_data, self.carta, user_id)
-            for msg in mensagens:
-                await interaction.followup.send(msg)
+       
+        user_cartas.append(self.carta["id"])
+        await update_usuario(user_id, {"cartas": user_cartas})
+        await interaction.response.send_message(
+            f"🎉 Você pegou a carta **{self.carta['nome']}**!",
+            ephemeral=True
+        )
+        mensagens = await atualizar_conquistas(user_data, self.carta, user_id)
+        for msg in mensagens:
+            await interaction.followup.send(msg)
 
 class Drop(commands.Cog):
     def __init__(self, bot):
