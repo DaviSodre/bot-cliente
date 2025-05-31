@@ -12,4 +12,5 @@ def criar_embed_carta_preview(carta, usuario):
     embed.set_image(url=carta.get('imagem', ''))
     embed.add_field(name="Raridade", value=carta.get('raridade', 'Desconhecida'), inline=True)
     embed.add_field(name="Grupo", value=carta.get('grupo', 'Desconhecido'), inline=True)
+    embed.set_footer(text="Bot desenvolvido por TwiceFla & Kendo", icon_url=self.bot.user.avatar.url)
     return embed
