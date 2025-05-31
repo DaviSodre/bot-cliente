@@ -48,35 +48,35 @@ class PerfilCog(commands.Cog):
         era_mais = Counter([c["era"] for c in cartas_usuario]).most_common(1)
         era_top = era_mais[0][0] if era_mais else "Nenhuma"
 
-        # Eras completas
-        
-
+        # Escolhe imagem de fundo (gif ou imagem normal)
         background_id = usuario.get("background")
         if background_id:
             carta_background = next((c for c in todas_cartas if c["id"] == background_id), None)
         else:
-    # pega última carta do usuário, se não tiver background setado
             if cartas_ids_usuario:
                 ultima_carta_id = cartas_ids_usuario[-1]
                 carta_background = next((c for c in todas_cartas if c["id"] == ultima_carta_id), None)
             else:
                 carta_background = None
-        # Imagem de fundo
-        imagem_url = carta_background.get("gif") or carta_background.get("imagem") if carta_background else None
 
-        
+        imagem_url = carta_background.get("gif") or carta_background.get("imagem") if carta_background else None
+        is_gif = imagem_url.endswith(".gif") if imagem_url else False
+
+        inline_val = True if is_gif else False
 
         embed = discord.Embed(
             title=f"Perfil de {interaction.user.display_name}",
-            description=f"🃏 **Cartas:** {total_usuario}/{total_cartas}\n"
-                        f"• Comuns: {len(comuns_usuario)}/{len(comuns)}\n"
-                        f"• Raras: {len(raras_usuario)}/{len(raras)}\n"
-                        f"• Épicas: {len(epicas_usuario)}/{len(epicas)}",
+            description=(
+                f"🃏 **Cartas:** {total_usuario}/{total_cartas}\n"
+                f"• Comuns: {len(comuns_usuario)}/{len(comuns)}\n"
+                f"• Raras: {len(raras_usuario)}/{len(raras)}\n"
+                f"• Épicas: {len(epicas_usuario)}/{len(epicas)}"
+            ),
             color=discord.Color.purple()
         )
-        embed.add_field(name="🎤 Grupo com mais cartas", value=grupo_top, inline=True)
-        embed.add_field(name="📀 Era com mais cartas", value=era_top, inline=True)
-        embed.add_field(name="💰 Dinheiro", value=f"{usuario.get('moedas', 0)} moedas", inline=True)
+        embed.add_field(name="🎤 Grupo com mais cartas", value=grupo_top, inline=inline_val)
+        embed.add_field(name="📀 Era com mais cartas", value=era_top, inline=inline_val)
+        embed.add_field(name="💰 Dinheiro", value=f"{usuario.get('moedas', 0)} moedas", inline=inline_val)
         embed.set_footer(text="Perfil do Usuário", icon_url=interaction.user.display_avatar.url)
         embed.set_thumbnail(url=interaction.user.avatar.url)
 
