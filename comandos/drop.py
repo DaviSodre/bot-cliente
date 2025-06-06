@@ -82,7 +82,7 @@ class ClaimView(discord.ui.View):
             if quantidade_str is not None:
                 value_lines.append(f"🎴 Quantidade: {quantidade_str}")
             if progresso_era is not None:
-                value_lines.append(f"📊 Progresso na coleção: {progresso_era}")
+                value_lines.append(f"📊 Progresso na era: {progresso_era}")
 
             resultado_embed.add_field(
                 name=f"{carta['nome']}",
