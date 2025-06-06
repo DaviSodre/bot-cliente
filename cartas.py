@@ -5,7 +5,6 @@ cartas_disponiveis = [
         "grupo": "BLACKPINK",
         "raridade": "Épica",
         "era": "Pink Venom",
-        "gif": "https://i.makeagif.com/media/8-13-2022/UapaIh.gif",
         "imagem": "https://i.pinimg.com/736x/98/8a/48/988a48ca90e400c8cf58725d94fd1312.jpg"
     },
     {
@@ -351,6 +350,7 @@ cartas_disponiveis = [
         "nome": "Sana",
         "grupo": "TWICE",
         "raridade": "Comum",
+        "era": "With You-th",
         "imagem": "https://i.postimg.cc/rFwyX3fJ/sana2.png"
     },
     {
