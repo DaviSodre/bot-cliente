@@ -5,7 +5,9 @@ from utils.imagens import juntar_imagens_lado_a_lado
 from database import get_usuario, update_usuario
 from cartas import cartas_disponiveis
 from utils.conquistas import atualizar_conquistas
+from collections import Counter
 import time
+import asyncio 
 
 probabilidades = {
     "Comum": 80,
@@ -22,23 +24,22 @@ claim_cooldowns = {}
 
 class ClaimView(discord.ui.View):
     def __init__(self, ctx, cartas, caminho_imagem):
-        super().__init__(timeout=30)
+        super().__init__(timeout=None)  # sem timeout automático
         self.ctx = ctx
         self.cartas = cartas
         self.caminho_imagem = caminho_imagem
-        self.reivindicadas = {}  # index: username
-        self.claimed_users = set()  # user_id de quem já pegou
+        self.reivindicadas = {}
+        self.claimed_users = set()
         self.message = None
 
         for i, carta in enumerate(cartas):
             self.add_item(ClaimButton(i, carta, self))
 
-    async def on_timeout(self):
+    async def mostrar_resultado(self):
         for item in self.children:
             item.disabled = True
         await self.message.edit(view=self)
 
-        # criar embed com resultado final
         resultado_embed = discord.Embed(
             title="📦 Resultado do Drop",
             description="Veja quem pegou o quê!",
@@ -46,15 +47,51 @@ class ClaimView(discord.ui.View):
         )
 
         for i, carta in enumerate(self.cartas):
-            pego_por = self.reivindicadas.get(i, "Ninguém pegou")
-            era = carta.get("era", "Desconhecida")
+            user_id = self.reivindicadas.get(i)
+            if user_id:
+                usuario = await get_usuario(user_id)
+                user_cartas = usuario.get("cartas", [])
+                era_carta = carta.get("era", "Desconhecida")
+
+                carta_counts = Counter(user_cartas)
+
+                cartas_era = [c for c in cartas_disponiveis if c.get("era") == era_carta]
+                total_era = len(cartas_era)
+
+                cartas_era_usuario_ids = {
+                    cid for cid in set(user_cartas)
+                    if any(c["id"] == cid and c.get("era") == era_carta for c in cartas_disponiveis)
+                }
+
+                progresso_era = f"{len(cartas_era_usuario_ids)}/{total_era}"
+                qtd_carta = carta_counts.get(carta["id"], 0)
+                quantidade_str = f"{qtd_carta}x" if qtd_carta > 0 else None
+
+                dono_str = f"<@{user_id}>"
+            else:
+                dono_str = "Ninguém pegou"
+                progresso_era = None
+                quantidade_str = None
+
+            value_lines = [
+                f"👤 Dono: **{dono_str}**",
+                f"🆔 ID: `{carta['id']}`",
+                f"🧪 Raridade: {carta['raridade']}",
+                f"📀 Era: {carta.get('era', 'Desconhecida')}"
+            ]
+            if quantidade_str is not None:
+                value_lines.append(f"🎴 Quantidade: {quantidade_str}")
+            if progresso_era is not None:
+                value_lines.append(f"📊 Progresso na coleção: {progresso_era}")
+
             resultado_embed.add_field(
                 name=f"{carta['nome']}",
-                value=f"👤 Dono: **{pego_por}**\n🧪 Raridade: {carta['raridade']}\n📀 Era: {era}\n🆔 ID: `{carta['id']}`",
+                value="\n".join(value_lines),
                 inline=True
             )
 
         await self.ctx.send(embed=resultado_embed)
+
 
 class ClaimButton(discord.ui.Button):
     def __init__(self, index, carta, parent_view):
@@ -85,20 +122,19 @@ class ClaimButton(discord.ui.Button):
             return
 
         if self.index in self.parent_view.reivindicadas:
-            quem = self.parent_view.reivindicadas[self.index]
+            dono_id = self.parent_view.reivindicadas[self.index]
             await interaction.response.send_message(
-                f"⚠️ A carta {self.carta['nome']} já foi escolhida por **{quem}**.", ephemeral=True
+                f"⚠️ A carta {self.carta['nome']} já foi escolhida por <@{dono_id}>.", ephemeral=True
             )
             return
 
         claim_cooldowns[user_id] = now
-        self.parent_view.reivindicadas[self.index] = user_name
+        self.parent_view.reivindicadas[self.index] = user_id  # salva user_id, não nome
         self.parent_view.claimed_users.add(user_id)
 
         user_data = await get_usuario(user_id)
         user_cartas = user_data.get("cartas", [])
 
-       
         user_cartas.append(self.carta["id"])
         await update_usuario(user_id, {"cartas": user_cartas})
         await interaction.response.send_message(
@@ -108,6 +144,7 @@ class ClaimButton(discord.ui.Button):
         mensagens = await atualizar_conquistas(user_data, self.carta, user_id)
         for msg in mensagens:
             await interaction.followup.send(msg)
+
 
 class Drop(commands.Cog):
     def __init__(self, bot):
@@ -146,6 +183,9 @@ class Drop(commands.Cog):
         view = ClaimView(ctx, cartas_sorteadas, caminho)
         msg = await ctx.send(embed=embed, file=file, view=view)
         view.message = msg
+        asyncio.create_task(mostrar_drop_depois(view))
+
+        
     @drop.error
     async def drop_error(self, ctx, error):
         if isinstance(error, commands.CommandOnCooldown):
@@ -155,6 +195,10 @@ class Drop(commands.Cog):
 
             tempo_formatado = f"{minutos}m {segundos}s" if minutos else f"{segundos}s"
             await ctx.send(f"🕒 Calma aí! Você só pode usar `drop` de novo em **{tempo_formatado}**.")
+async def mostrar_drop_depois(view):
+    await asyncio.sleep(30)
+    await view.mostrar_resultado()
+
 
 
 # carregar extensão
