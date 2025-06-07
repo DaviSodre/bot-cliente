@@ -48,18 +48,19 @@ class LojaButton(discord.ui.Button):
             for i, pack in enumerate(packs_da_categoria, start=1):
                 nome = pack['nome']
                 preco = f"{pack['preco']:,}".replace(",", ".")
+                raridade = pack['id'].split("_")[1].capitalize()
+                grupo = pack['id'].split("_")[0].capitalize()
                 descricao_formatada += (
                     f"{i}) {nome:<28} 💳 {preco} moedas\n"
-                    f"     ID {pack['id']}\n"
+                    f"     /comprar {raridade.lower()} {grupo.lower()}\n"
                 )
             embed.add_field(name="Packs disponíveis", value=f"```{descricao_formatada}```", inline=False)
-            embed.set_footer(text="Use /comprar <id> para adquirir um pack.")
+            embed.set_footer(text="Use /comprar <raridade> <grupo> para adquirir um pack.")
         else:
             embed.description += "\n🚧 Essa categoria ainda está em construção..."
 
         view = VoltarOnlyView()
         await interaction.response.edit_message(embed=embed, view=view)
-
 
 class VoltarOnlyView(discord.ui.View):
     def __init__(self):
@@ -79,8 +80,9 @@ class VoltarButton(discord.ui.Button):
                 f"💰 **Saldo:** `{saldo} moedas`\n\n"
                 "Bem-vindo à loja de packs! Para comprar:\n"
                 "1️⃣ Escolha uma categoria clicando nos botões abaixo.\n"
-                "2️⃣ Veja os packs disponíveis e anote o **ID** do pack que quiser!\n"
-                "3️⃣ Use o comando `/comprar <id>` para comprar o pack desejado.\n"
+                "2️⃣ Veja os packs disponíveis e copie o comando indicado abaixo de cada um!\n"
+                "3️⃣ Use o comando `/comprar <raridade> <grupo>` para comprar o pack.\n"
+                "   Ex: `/comprar gold blackpink`\n"
                 "4️⃣ Após a compra, receba as cartas e aproveite sua coleção!\n\n"
                 "💡 Packs especiais podem conter cartas raras e efeitos exclusivos.\n"
                 "⚠️ Verifique seu saldo para garantir que tem moedas suficientes.\n\n"
@@ -95,7 +97,7 @@ class LojaCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="loja", description="Abra a loja de packs")
+    @app_commands.command(name="loja2", description="Abra a loja de packs")
     async def loja(self, interaction: discord.Interaction):
         user_data = await get_usuario(interaction.user.id)
         saldo = user_data.get("moedas", 0)
@@ -105,8 +107,9 @@ class LojaCog(commands.Cog):
                 f"💰 **Saldo:** `{saldo} moedas`\n\n"
                 "Bem-vindo à loja de packs! Para comprar:\n"
                 "1️⃣ Escolha uma categoria clicando nos botões abaixo.\n"
-                "2️⃣ Veja os packs disponíveis e anote o **ID** do pack que quiser!\n"
-                "3️⃣ Use o comando `/comprar <id>` para comprar o pack desejado.\n"
+                "2️⃣ Veja os packs disponíveis e copie o comando indicado abaixo de cada um!\n"
+                "3️⃣ Use o comando `/comprar <raridade> <grupo>` para comprar o pack.\n"
+                "   Ex: `/comprar gold blackpink`\n"
                 "4️⃣ Após a compra, receba as cartas e aproveite sua coleção!\n\n"
                 "💡 Packs especiais podem conter cartas raras e efeitos exclusivos.\n"
                 "⚠️ Verifique seu saldo para garantir que tem moedas suficientes.\n\n"
