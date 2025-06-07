@@ -53,7 +53,7 @@ class LojaButton(discord.ui.Button):
                     f"     ID {pack['id']}\n"
                 )
             embed.add_field(name="Packs disponíveis", value=f"```{descricao_formatada}```", inline=False)
-            embed.set_footer(text="Use /comprar <id> na home para adquirir um pack.")
+            embed.set_footer(text="Use /comprar <id> para adquirir um pack.")
         else:
             embed.description += "\n🚧 Essa categoria ainda está em construção..."
 
