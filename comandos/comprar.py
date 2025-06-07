@@ -6,19 +6,20 @@ from database import get_usuario, update_usuario
 import packs.blackpink as blackpink_pack
 import packs.twice as twice_pack
 
+RARIDADES = ["silver", "gold"]
+GRUPOS = ["blackpink", "twice"]
+
 PACKS = {
-    "BLACKPINK": [
+    "blackpink": [
         {"id": "blackpink_silver", "nome": "🎀 Blackpink Silver Pack", "cartas": 5, "preco": 50_000},
         {"id": "blackpink_gold", "nome": "🎀 Blackpink Gold Pack", "cartas": 10, "preco": 100_000},
     ],
-    "TWICE": [
+    "twice": [
         {"id": "twice_silver", "nome": "🍭 Twice Silver Pack", "cartas": 5, "preco": 50_000},
         {"id": "twice_gold", "nome": "🍭 Twice Gold Pack", "cartas": 10, "preco": 100_000},
     ],
-    # outras categorias futuras
 }
 
-# mapeia id para função que abre o pack
 PACKS_FUNCS = {
     "blackpink_silver": blackpink_pack.pack_blackpink_5,
     "blackpink_gold": blackpink_pack.pack_blackpink,
@@ -31,23 +32,24 @@ class ComprarCog(commands.Cog):
         self.bot = bot
 
     @app_commands.command(name="comprar", description="Compre um pack de cartas na loja")
-    @app_commands.describe(id="ID do pack que deseja comprar")
-    async def comprar(self, interaction: discord.Interaction, id: str):
+    @app_commands.describe(raridade="silver ou gold", grupo="Nome do grupo, ex: blackpink")
+    @app_commands.choices(
+        raridade=[app_commands.Choice(name="Silver", value="silver"),
+                  app_commands.Choice(name="Gold", value="gold")],
+        grupo=[app_commands.Choice(name="BLACKPINK", value="blackpink"),
+               app_commands.Choice(name="TWICE", value="twice")]
+    )
+    async def comprar(self, interaction: discord.Interaction, raridade: app_commands.Choice[str], grupo: app_commands.Choice[str]):
         await interaction.response.defer()
-        id = id.lower()
+        pack_id = f"{grupo.value}_{raridade.value}"
 
-        # procura o pack nos PACKS
-        pack_info = None
-        for categoria_packs in PACKS.values():
-            for pack in categoria_packs:
-                if pack["id"] == id:
-                    pack_info = pack
-                    break
-            if pack_info:
-                break
+        pack_info = next(
+            (pack for pack in PACKS.get(grupo.value, []) if pack["id"] == pack_id),
+            None
+        )
 
         if not pack_info:
-            await interaction.followup.send("❌ Pack inválido! Verifique o ID e tente novamente.")
+            await interaction.followup.send("❌ Pack inválido! Verifique os dados e tente novamente.")
             return
 
         user_data = await get_usuario(interaction.user.id)
@@ -58,15 +60,13 @@ class ComprarCog(commands.Cog):
             await interaction.followup.send(f"❌ Você não tem moedas suficientes! Seu saldo atual: `{saldo:,}` moedas".replace(",", "."))
             return
 
-        # desconta as moedas
+        # desconta
         user_data["moedas"] -= preco
         await update_usuario(interaction.user.id, user_data)
 
         await interaction.followup.send(f"🎉 Você comprou o pack **{pack_info['nome']}**! Abrindo o pacote...")
 
-
-        # chama a função que abre o pack
-        abrir_pack = PACKS_FUNCS.get(id)
+        abrir_pack = PACKS_FUNCS.get(pack_id)
         if abrir_pack:
             await abrir_pack(self.bot, interaction)
         else:
