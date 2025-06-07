@@ -48,14 +48,14 @@ class LojaButton(discord.ui.Button):
             for i, pack in enumerate(packs_da_categoria, start=1):
                 nome = pack['nome']
                 preco = f"{pack['preco']:,}".replace(",", ".")
-                raridade = pack['id'].split("_")[1].capitalize()
-                grupo = pack['id'].split("_")[0].capitalize()
+                item = pack['id'].split("_")[1].lower() + "pack"
+                grupo = pack['id'].split("_")[0].lower()
                 descricao_formatada += (
                     f"{i}) {nome:<28} 💳 {preco} moedas\n"
-                    f"     /comprar {raridade.lower()} {grupo.lower()}\n"
+                    f"     /comprar {item} {grupo}\n"
                 )
-            embed.add_field(name="Packs disponíveis", value=f"```{descricao_formatada}```", inline=False)
-            embed.set_footer(text="Use /comprar <raridade> <grupo> para adquirir um pack.")
+            embed.add_field(name="Itens disponíveis", value=f"```{descricao_formatada}```", inline=False)
+            embed.set_footer(text="Use /comprar <item> <grupo> para adquirir um item.")
         else:
             embed.description += "\n🚧 Essa categoria ainda está em construção..."
 
@@ -78,15 +78,15 @@ class VoltarButton(discord.ui.Button):
             title="🛒 Loja de Packs & Itens",
             description=(
                 f"💰 **Saldo:** `{saldo} moedas`\n\n"
-                "Bem-vindo à loja de packs! Para comprar:\n"
+                "🛒 Bem-vindo à loja de packs & itens! Para comprar:\n"
                 "1️⃣ Escolha uma categoria clicando nos botões abaixo.\n"
-                "2️⃣ Veja os packs disponíveis e copie o comando indicado abaixo de cada um!\n"
-                "3️⃣ Use o comando `/comprar <raridade> <grupo>` para comprar o pack.\n"
-                "   Ex: `/comprar gold blackpink`\n"
-                "4️⃣ Após a compra, receba as cartas e aproveite sua coleção!\n\n"
+                "2️⃣ Veja os itens disponíveis e copie o comando indicado abaixo de cada um!\n"
+                "3️⃣ Use o comando `/comprar <item> <grupo>` para comprar.\n"
+                "   Ex: `/comprar goldpack blackpink`\n"
+                "4️⃣ Após a compra, receba suas cartas e aproveite sua coleção!\n\n"
                 "💡 Packs especiais podem conter cartas raras e efeitos exclusivos.\n"
-                "⚠️ Verifique seu saldo para garantir que tem moedas suficientes.\n\n"
-                "Clique nos botões abaixo para começar a explorar."
+                "⚠️ Verifique seu saldo antes de comprar.\n\n"
+                "👇 Clique nos botões abaixo para começar a explorar."
             ),
             color=discord.Color.green()
         )
@@ -105,15 +105,15 @@ class LojaCog(commands.Cog):
             title="🛒 Loja de Packs & Itens",
             description=(
                 f"💰 **Saldo:** `{saldo} moedas`\n\n"
-                "Bem-vindo à loja de packs! Para comprar:\n"
+                "🛒 Bem-vindo à loja de packs & itens! Para comprar:\n"
                 "1️⃣ Escolha uma categoria clicando nos botões abaixo.\n"
-                "2️⃣ Veja os packs disponíveis e copie o comando indicado abaixo de cada um!\n"
-                "3️⃣ Use o comando `/comprar <raridade> <grupo>` para comprar o pack.\n"
-                "   Ex: `/comprar gold blackpink`\n"
-                "4️⃣ Após a compra, receba as cartas e aproveite sua coleção!\n\n"
+                "2️⃣ Veja os itens disponíveis e copie o comando indicado abaixo de cada um!\n"
+                "3️⃣ Use o comando `/comprar <item> <grupo>` para comprar.\n"
+                "   Ex: `/comprar goldpack blackpink`\n"
+                "4️⃣ Após a compra, receba suas cartas e aproveite sua coleção!\n\n"
                 "💡 Packs especiais podem conter cartas raras e efeitos exclusivos.\n"
-                "⚠️ Verifique seu saldo para garantir que tem moedas suficientes.\n\n"
-                "Clique nos botões abaixo para começar a explorar."
+                "⚠️ Verifique seu saldo antes de comprar.\n\n"
+                "👇 Clique nos botões abaixo para começar a explorar."
             ),
             color=discord.Color.green()
         )
