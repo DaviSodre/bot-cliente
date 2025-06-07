@@ -444,6 +444,135 @@ cartas_disponiveis = [
         "imagem": "https://i.pinimg.com/736x/f7/8a/07/f78a075fd264ef2b0600ce6d2e075f40.jpg"
     },
     {
+        "id": "136",
+        "nome": "Jennie",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/58/1/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-1.jpeg?v=0ca6a"
+    },
+    {
+        "id": "137",
+        "nome": "Jennie",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/cb/3/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-2.jpeg?v=6c1cc"
+    },
+    {
+        "id": "138",
+        "nome": "Rosé",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/c2/5/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-3.jpeg?v=5aeea"
+    },
+    {
+        "id": "139",
+        "nome": "Rosé",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/aa/3/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-4.jpeg?v=ab995"
+    },
+    {
+        "id": "140",
+        "nome": "Jisoo",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/80/2/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-5.jpeg?v=258c7"
+    },
+    {
+        "id": "141",
+        "nome": "Jisoo",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/67/3/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-6.jpeg?v=f830f"
+    },
+    {
+        "id": "142",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/e7/4/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-8.jpeg?v=3bc5c"
+    },
+    {
+        "id": "143",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/0c/1/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-7.jpeg?v=0804e"
+    },
+    {
+        "id": "144",
+        "nome": "Jisoo",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/a9/5/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-9.jpeg?v=44e61"
+    },
+    {
+        "id": "145",
+        "nome": "Jisoo",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/d0/4/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-10.jpeg?v=95bba"
+    },
+    {
+        "id": "146",
+        "nome": "Jennie",
+        "grupo": "BLACKPINK",
+        "raridade": "Épica",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/58/2/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-11.jpeg?v=f5cf8",
+        "gif": "https://i.pinimg.com/originals/fb/f2/24/fbf224c63de506e99406682e97c29136.gif"
+    },
+    {
+        "id": "147",
+        "nome": "Jennie",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/41/4/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-12.jpeg?v=7c981"
+    },
+    {
+        "id": "148",
+        "nome": "Rosé",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/e1/4/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-13.jpeg?v=7c981"
+    },
+    {
+        "id": "149",
+        "nome": "Rosé",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/7d/5/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-14.jpeg?v=e91fe"
+    },
+    {
+        "id": "150",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/27/1/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-15.jpeg?v=b2a23"
+    },
+    {
+        "id": "151",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/d9/0/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-16.jpeg?v=c6355"
+    },
+    {
         "id": "201",
         "nome": "Dami",
         "grupo": "Dreamcatcher",
