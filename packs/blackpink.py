@@ -74,11 +74,23 @@ async def colar_cartas_em_grid(cartas, cols, rows):
     largura, altura = 400, 600
     final = Image.new("RGB", (largura * cols, altura * rows))
 
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36"
+    }
+
     async with aiohttp.ClientSession() as session:
         for i, carta in enumerate(cartas):
-            async with session.get(carta["imagem"]) as resp:
-                img_bytes = await resp.read()
-            img = Image.open(io.BytesIO(img_bytes)).resize((largura, altura))
+            try:
+                async with session.get(carta["imagem"], headers=headers) as resp:
+                    if resp.status != 200:
+                        print(f"Erro HTTP {resp.status} ao baixar imagem da carta {carta['nome']} - URL: {carta['imagem']}")
+                        continue
+                    img_bytes = await resp.read()
+                img = Image.open(io.BytesIO(img_bytes)).resize((largura, altura))
+            except Exception as e:
+                print(f"Erro ao abrir imagem da carta {carta['nome']} - URL: {carta['imagem']}: {e}")
+                continue
+
             x = (i % cols) * largura
             y = (i // cols) * altura
             final.paste(img, (x, y))
