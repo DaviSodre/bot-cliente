@@ -97,7 +97,7 @@ class LojaCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="loja2", description="Abra a loja de packs")
+    @app_commands.command(name="loja", description="Abra a loja de packs")
     async def loja(self, interaction: discord.Interaction):
         user_data = await get_usuario(interaction.user.id)
         saldo = user_data.get("moedas", 0)
