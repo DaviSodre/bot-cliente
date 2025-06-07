@@ -443,6 +443,63 @@ cartas_disponiveis = [
         "era": "Born Pink",
         "imagem": "https://i.pinimg.com/736x/f7/8a/07/f78a075fd264ef2b0600ce6d2e075f40.jpg"
     },
+    {
+        "id": "201",
+        "nome": "Dami",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/FHJjhZKp/DAMI1.png"
+    },
+    {
+        "id": "202",
+        "nome": "Gahyun",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/FFWccqdG/GAHYUN1.png"
+    },
+    {
+        "id": "203",
+        "nome": "Handong",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/65Fvbvhv/HANDONG1.png"
+    },
+    {
+        "id": "204",
+        "nome": "JiU",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/9MXRwtcv/JIU1.png"
+    },
+    {
+        "id": "205",
+        "nome": "Siyeon",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/WzHkvFLx/SIYEON1.png"
+    },
+    {
+        "id": "206",
+        "nome": "Sua",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/Jh5HhdCN/SUA1.png"
+    },
+    {
+        "id": "207",
+        "nome": "Yoohyeon",
+        "grupo": "Dreamcatcher",
+        "raridade": "Comum",
+        "era": "VirtuouS",
+        "imagem": "https://i.postimg.cc/qMNKGL2r/YOOHYEON1.png"
+    },
+
 ]
     
     
