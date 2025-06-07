@@ -564,6 +564,14 @@ cartas_disponiveis = [
         "era": "The Album",
         "imagem": "https://kpopping.com/documents/27/1/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-15.jpeg?v=b2a23"
     },
+    {
+        "id": "151",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Rara",
+        "era": "The Album",
+        "imagem": "https://kpopping.com/documents/d9/0/800/BLACKPINK-4-1-THE-ALBUM-Photobook-Scans-documents-16.jpeg?v=c6355"
+    },
     
     {
         "id": "201",
