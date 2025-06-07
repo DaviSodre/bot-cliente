@@ -1,22 +1,23 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
+from database import get_usuario, update_usuario
+
 import packs.blackpink as blackpink_pack
 import packs.twice as twice_pack
-from database import get_usuario, update_usuario
 
 CATEGORIAS = ["BLACKPINK", "TWICE", "NEW JEANS", "GIDLE"]
 
 PACKS = {
     "BLACKPINK": [
-        {"nome": "Pack Blackpink 1", "cartas": 10, "preco": 100_000, "emoji": "🎀"},
-        {"nome": "Pack Blackpink 2", "cartas": 5, "preco": 50_000, "emoji": "🎀"},
+        {"id": "blackpink_silver", "nome": "🎀 Blackpink Silver Pack", "cartas": 5, "preco": 50_000},
+        {"id": "blackpink_gold", "nome": "🎀 Blackpink Gold Pack", "cartas": 10, "preco": 100_000},
     ],
     "TWICE": [
-        {"nome": "Pack Twice 1", "cartas": 10, "preco": 100_000, "emoji": "🍭"},
-        {"nome": "Pack Twice 2", "cartas": 5, "preco": 50_000, "emoji": "🍭"},
+        {"id": "twice_silver", "nome": "🍭 Twice Silver Pack", "cartas": 5, "preco": 50_000},
+        {"id": "twice_gold", "nome": "🍭 Twice Gold Pack", "cartas": 10, "preco": 100_000},
     ],
-    # adiciona outras categorias aqui
+    # outras categorias...
 }
 
 class LojaView(discord.ui.View):
@@ -32,96 +33,38 @@ class LojaButton(discord.ui.Button):
 
     async def callback(self, interaction: discord.Interaction):
         embed = discord.Embed(
-            title=f"🧺 Loja - {self.categoria}",
-            description="Escolha um dos packs disponíveis abaixo:",
+            title=f"💳 Loja - {self.categoria}",
             color=discord.Color.purple()
         )
+
+        user_data = await get_usuario(interaction.user.id)
+        saldo = user_data.get("moedas", 0)
+        embed.description = f"💰 **Saldo:** `{saldo:,} moedas`".replace(",", ".")
 
         packs_da_categoria = PACKS.get(self.categoria)
 
         if packs_da_categoria:
-            for pack in packs_da_categoria:
-                nome = f"{pack['emoji']} {pack['nome']}"
-                valor = f"📦 **{pack['cartas']} cartas**\n💰 **{pack['preco']:,} moedas**".replace(",", ".")
-                embed.add_field(name=nome, value=valor, inline=False)
+            descricao_formatada = f"══════ {self.categoria.upper()} ══════\n"
+            for i, pack in enumerate(packs_da_categoria, start=1):
+                nome = pack['nome']
+                preco = f"{pack['preco']:,}".replace(",", ".")
+                descricao_formatada += (
+                    f"{i}) {nome:<28} 💳 {preco} moedas\n"
+                    f"     ID {pack['id']}\n"
+                )
+            embed.add_field(name="Packs disponíveis", value=f"```{descricao_formatada}```", inline=False)
+            embed.set_footer(text="Use /comprar <id> na home para adquirir um pack.")
         else:
-            embed.description = "🚧 Essa categoria ainda está em construção..."
+            embed.description += "\n🚧 Essa categoria ainda está em construção..."
 
-        view = CategoriaView(self.categoria)
+        view = VoltarOnlyView()
         await interaction.response.edit_message(embed=embed, view=view)
 
-class CategoriaView(discord.ui.View):
-    def __init__(self, categoria):
+
+class VoltarOnlyView(discord.ui.View):
+    def __init__(self):
         super().__init__(timeout=120)
-        self.categoria = categoria
-        
-        # dicionário com packs, cada um com nome e preço
-        packs = {
-            "BLACKPINK": [
-                {"nome": "Pack Blackpink 1", "cartas": 10, "preco": 100_000, "emoji": "🎀"},
-                {"nome": "Pack Blackpink 2", "cartas": 5, "preco": 50_000, "emoji": "🎀"},
-            ],
-            "TWICE": [
-                {"nome": "Pack Twice 1", "cartas": 10, "preco": 100_000, "emoji": "🍭"},
-                {"nome": "Pack Twice 2", "cartas": 5, "preco": 50_000, "emoji": "🍭"},
-            ],
-            # adiciona outras categorias aqui
-        }
-
-
-        packs_da_categoria = packs.get(categoria, [])
-
-        for i, pack_info in enumerate(packs_da_categoria, start=1):
-            self.add_item(ComprarButton(categoria, i, pack_info["nome"], pack_info["preco"]))
-
         self.add_item(VoltarButton())
-
-class ComprarButton(discord.ui.Button):
-    def __init__(self, categoria, pack_numero, pack_nome, preco):
-        super().__init__(label=f"Comprar {pack_nome}", style=discord.ButtonStyle.success)
-        self.categoria = categoria
-        self.pack_numero = pack_numero
-        self.pack_nome = pack_nome
-        self.preco = preco
-
-    async def callback(self, interaction: discord.Interaction):
-        user_data = await get_usuario(interaction.user.id)
-        saldo = user_data.get("moedas", 0)
-
-        if saldo < self.preco:
-            await interaction.response.send_message(
-                f"😢 Você não tem moedas suficientes! Precisa de {self.preco}, mas tem {saldo}.",
-                ephemeral=True
-            )
-            return
-
-        # desconta o preço
-        user_data["moedas"] = saldo - self.preco
-        await update_usuario(interaction.user.id, user_data)
-
-        await interaction.response.defer()
-        await interaction.followup.send(f"🎉 Parabéns, você comprou **{self.pack_nome}**! Abrindo seu pack...")
-
-        # chama função do pack correto
-        if self.categoria == "BLACKPINK":
-            if self.pack_numero == 1:
-                await blackpink_pack.pack_blackpink(interaction.client, interaction)
-            elif self.pack_numero == 2:
-                await blackpink_pack.pack_blackpink_5(interaction.client, interaction)
-            else:
-                await interaction.response.send_message("Pack ainda não implementado.", ephemeral=True)
-                return
-        elif self.categoria == "TWICE":
-            if self.pack_numero == 1:
-                await twice_pack.pack_twice(interaction.client, interaction)
-            elif self.pack_numero == 2:
-                await twice_pack.pack_twice_5(interaction.client, interaction)
-            else:
-                await interaction.response.send_message("Pack ainda não implementado.", ephemeral=True)
-                return
-
-        
-    
 
 class VoltarButton(discord.ui.Button):
     def __init__(self):
@@ -129,18 +72,19 @@ class VoltarButton(discord.ui.Button):
 
     async def callback(self, interaction: discord.Interaction):
         user_data = await get_usuario(interaction.user.id)
-        saldo = user_data.get("moedas", 0)  
+        saldo = user_data.get("moedas", 0)
         embed = discord.Embed(
             title="🛒 Loja de Packs & Itens",
             description=(
                 f"💰 **Saldo:** `{saldo} moedas`\n\n"
-                "Aqui você pode comprar packs de cartas, itens especiais, e muitas outras coisas!\n\n"
-                "Cada categoria tem packs diferentes, escolha uma abaixo para ver o que tem.\n"
-                "Quando abrir uma categoria, verá os packs numerados para escolher o que comprar.\n\n"
-                "💰 Use suas moedas para comprar, ganhe cartas e colecione!\n"
-                "🎉 Packs especiais podem conter cartas raras e épicas com efeitos incríveis.\n"
-                "⚠️ Fique de olho no saldo para não ficar sem moedas!\n\n"
-                "Clique nos botões abaixo para começar sua compra."
+                "Bem-vindo à loja de packs! Para comprar:\n"
+                "1️⃣ Escolha uma categoria clicando nos botões abaixo.\n"
+                "2️⃣ Veja os packs disponíveis e anote o **ID** do pack que quiser!\n"
+                "3️⃣ Use o comando `/comprar <id>` para comprar o pack desejado.\n"
+                "4️⃣ Após a compra, receba as cartas e aproveite sua coleção!\n\n"
+                "💡 Packs especiais podem conter cartas raras e efeitos exclusivos.\n"
+                "⚠️ Verifique seu saldo para garantir que tem moedas suficientes.\n\n"
+                "Clique nos botões abaixo para começar a explorar."
             ),
             color=discord.Color.green()
         )
@@ -159,13 +103,14 @@ class LojaCog(commands.Cog):
             title="🛒 Loja de Packs & Itens",
             description=(
                 f"💰 **Saldo:** `{saldo} moedas`\n\n"
-                "Aqui você pode comprar packs de cartas, itens especiais, e muitas outras coisas!\n\n"
-                "Cada categoria tem packs diferentes, escolha uma abaixo para ver o que tem.\n"
-                "Quando abrir uma categoria, verá os packs numerados para escolher o que comprar.\n\n"
-                "💰 Use suas moedas para comprar, ganhe cartas e colecione!\n"
-                "🎉 Packs especiais podem conter cartas raras e épicas com efeitos incríveis.\n"
-                "⚠️ Fique de olho no saldo para não ficar sem moedas!\n\n"
-                "Clique nos botões abaixo para começar sua compra."
+                "Bem-vindo à loja de packs! Para comprar:\n"
+                "1️⃣ Escolha uma categoria clicando nos botões abaixo.\n"
+                "2️⃣ Veja os packs disponíveis e anote o **ID** do pack que quiser!\n"
+                "3️⃣ Use o comando `/comprar <id>` para comprar o pack desejado.\n"
+                "4️⃣ Após a compra, receba as cartas e aproveite sua coleção!\n\n"
+                "💡 Packs especiais podem conter cartas raras e efeitos exclusivos.\n"
+                "⚠️ Verifique seu saldo para garantir que tem moedas suficientes.\n\n"
+                "Clique nos botões abaixo para começar a explorar."
             ),
             color=discord.Color.green()
         )
