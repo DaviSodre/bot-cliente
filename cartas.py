@@ -377,8 +377,76 @@ cartas_disponiveis = [
         "raridade": "Rara",
         "era": "With You-th",
         "imagem": "https://i.postimg.cc/L6JdVpyr/tzuyu3.png"
-    }
+    },
+    
+    {
+        "id": "128",
+        "nome": "Jennie",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Born Pink",
+        "imagem": "https://i.pinimg.com/736x/e1/5b/ab/e15bab17f4cc40721f6e350d839536e0.jpg"
+    },
+    {
+        "id": "129",
+        "nome": "Jisoo",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Born Pink",
+        "imagem": "https://i.pinimg.com/736x/9c/ce/0e/9cce0e036a951722d28eeb00ab670ef5.jpg"
+    },
+    {
+        "id": "130",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Born Pink",
+        "imagem": "https://i.pinimg.com/236x/0a/58/da/0a58da308bcae7f6396f4d98cfd41db9.jpg"
+    },
+    {
+        "id": "131",
+        "nome": "Lisa",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Square Up",
+        "imagem": "https://i.pinimg.com/736x/68/3c/d0/683cd05041e378e54e0ed2109f9b338f.jpg"
+    },
+    {
+        "id": "132",
+        "nome": "Jisoo",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Square Up",
+        "imagem": "https://pbs.twimg.com/media/FwagreDWYAA-Bg7.jpg:large"
+    },
+    {
+        "id": "133",
+        "nome": "Jennie",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Square Up",
+        "imagem": "https://pbs.twimg.com/media/FuALyIDXoAE1DCL.jpg:large"
+    },
+    {
+        "id": "134",
+        "nome": "Rosé",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Square Up",
+        "imagem": "https://i.pinimg.com/736x/6c/c2/5c/6cc25cf65d8b5b8389b5f17394b714e0.jpg"
+    },
+    {
+        "id": "135",
+        "nome": "Rosé",
+        "grupo": "BLACKPINK",
+        "raridade": "Comum",
+        "era": "Born Pink",
+        "imagem": "https://i.pinimg.com/736x/f7/8a/07/f78a075fd264ef2b0600ce6d2e075f40.jpg"
+    },
 ]
+    
+    
+
 
 
 
