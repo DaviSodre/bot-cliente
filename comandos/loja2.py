@@ -166,4 +166,4 @@ class Loja2Cog(commands.Cog):
         await interaction.followup.send(embed=embed, view=view)
 
 async def setup(bot):
-    await bot.add_cog(LojaCog(bot))
+    await bot.add_cog(Loja2Cog(bot))
