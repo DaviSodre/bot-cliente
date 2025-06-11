@@ -80,7 +80,7 @@ class ColecaoView(discord.ui.View):
         embed = discord.Embed(
             title=embed_title,
             description=(
-                f"Status: {filter_description}\n"
+                f"{filter_description}\n"
                 f"Progresso: **{possessed_cards_in_filter}/{total_cards_in_filter}** cartas ({((possessed_cards_in_filter / total_cards_in_filter) * 100):.2f}%)\n\n"
                 f"Página {self.page + 1} de {self.total_paginas}"
             ),
