@@ -31,9 +31,6 @@ class ColecaoView(discord.ui.View):
         user_card_ids = user_data.get("cartas", [])
         user_card_counts = Counter(user_card_ids)
 
-        # all_group_names e all_era_names não são mais usados aqui diretamente,
-        # mas serão gerados pela função auxiliar
-        
         filtered_available_cards = []
         for carta in cartas_disponiveis:
             match_group = (self.filtro_grupo is None) or (carta["grupo"].lower() == self.filtro_grupo)
@@ -57,7 +54,6 @@ class ColecaoView(discord.ui.View):
         return collection_status
 
     async def get_embed(self):
-        # get_collection_data não retorna mais all_group_names, all_era_names aqui
         collection_status = await self.get_collection_data()
         
         total_cards_in_filter = len(collection_status)
@@ -140,16 +136,27 @@ class Colecao(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Autocomplete function for 'grupo'
+    async def grupo_autocomplete(self, interaction: discord.Interaction, current: str) -> list[app_commands.Choice[str]]:
+        groups, _ = get_unique_groups_and_eras()
+        return [
+            app_commands.Choice(name=group, value=group)
+            for group in groups if current.lower() in group.lower()
+        ][:25] # Limit to 25 choices
+
+    # Autocomplete function for 'era'
+    async def era_autocomplete(self, interaction: discord.Interaction, current: str) -> list[app_commands.Choice[str]]:
+        _, eras = get_unique_groups_and_eras()
+        return [
+            app_commands.Choice(name=era, value=era)
+            for era in eras if current.lower() in era.lower()
+        ][:25] # Limit to 25 choices
+
     @app_commands.command(name="colecao", description="Mostra o progresso da sua coleção de cartas por grupo ou era")
     @app_commands.describe(grupo="Filtrar por grupo", era="Filtrar por era")
-    # Autocomplete para o parâmetro 'grupo'
-    @app_commands.autocomplete(grupo=discord.app_commands.autocomplete(
-        lambda i: [app_commands.Choice(name=g, value=g) for g in get_unique_groups_and_eras()[0] if i.data['options'][0]['value'].lower() in g.lower()]
-    ))
-    # Autocomplete para o parâmetro 'era'
-    @app_commands.autocomplete(era=discord.app_commands.autocomplete(
-        lambda i: [app_commands.Choice(name=e, value=e) for e in get_unique_groups_and_eras()[1] if i.data['options'][1]['value'].lower() in e.lower()]
-    ))
+    # Link autocomplete functions to parameters
+    @app_commands.autocomplete(grupo=grupo_autocomplete)
+    @app_commands.autocomplete(era=era_autocomplete)
     async def colecao_command(self, interaction: discord.Interaction, grupo: str = None, era: str = None):
         await interaction.response.defer()
 
