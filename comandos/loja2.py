@@ -141,7 +141,7 @@ class ReturnToMainLojaButton(discord.ui.Button):
         await interaction.message.edit(embed=embed, view=view)
 
 
-class LojaCog(commands.Cog):
+class Loja2Cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
