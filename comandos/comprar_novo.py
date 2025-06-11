@@ -130,13 +130,15 @@ class GroupSelect(discord.ui.Select):
         super().__init__(placeholder="Selecione um grupo...", options=options, custom_id="group_select")
 
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(ephemeral=True) # Deferir para mostrar que está pensando
+        # NOTA: Não precisamos mais de interaction.response.defer(ephemeral=True) aqui.
+        # Vamos diretamente editar a mensagem.
 
         selected_group = self.values[0]
         packs_do_grupo = PACKS.get(selected_group, [])
 
         if not packs_do_grupo:
-            await interaction.followup.send("Nenhum pack disponível para este grupo.")
+            # Se não houver packs, ainda é bom enviar uma mensagem efêmera.
+            await interaction.response.send_message("Nenhum pack disponível para este grupo.", ephemeral=True)
             return
 
         pack_options = [
@@ -151,12 +153,26 @@ class GroupSelect(discord.ui.Select):
         # Opcional: Adicionar um botão "Voltar" para o Select de grupos
         self.view.add_item(BackButton(self.view.user_id, self.view.bot))
 
-        # Atualizar a mensagem para mostrar o novo dropdown
-        await interaction.message.edit(
-            content=f"Você selecionou o grupo **{selected_group.capitalize()}**. Agora escolha um pack:",
-            view=self.view
+        # Criar um novo embed para exibir a mensagem "Escolha um pack"
+        # e talvez detalhes do grupo
+        new_embed = discord.Embed(
+            title=f"🛒 Loja de Packs - {selected_group.capitalize()}",
+            description=f"Você selecionou o grupo **{selected_group.capitalize()}**. Agora escolha um pack da lista abaixo:",
+            color=discord.Color.blue()
         )
-        await interaction.followup.send(f"Escolha um pack do grupo **{selected_group.capitalize()}**.", ephemeral=True)
+        # Opcional: Mostrar saldo atual aqui também
+        user_data = await get_usuario(interaction.user.id)
+        saldo = user_data.get("moedas", 0)
+        new_embed.add_field(name="Seu Saldo Atual", value=f"`{saldo:,}` moedas".replace(",", "."), inline=False)
+
+
+        # **AQUI ESTÁ A MUDANÇA PRINCIPAL:** Edite a mensagem original.
+        await interaction.response.edit_message(
+            embed=new_embed, # O novo embed com a instrução
+            view=self.view,
+            content=None # Limpa qualquer conteúdo de texto anterior, se houver
+        )
+        # Remova a linha await interaction.followup.send(...)
 
 
 class PackSelect(discord.ui.Select):
