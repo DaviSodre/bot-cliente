@@ -81,10 +81,10 @@ class LojaCategorySelect(discord.ui.Select):
                     f"**{nome}**\n"
                     f"  💳 Preço: `{preco} moedas`\n"
                     f"  📦 Cartas por pack: {pack['cartas']}\n"
-                    f"  👉 Use `/comprar_v2` e selecione **{grupo_value_for_command.capitalize()}** e depois **{nome}**.\n\n" # Instrução para o novo comando
+                    f"  👉 Use `/comprar2` e selecione **{grupo_value_for_command.capitalize()}** e depois **{nome}**.\n\n" # Instrução para o novo comando
                 )
             embed.add_field(name="Itens disponíveis", value=descricao_formatada, inline=False)
-            embed.set_footer(text="Use o comando /comprar_v2 para adquirir um item de forma interativa.")
+            embed.set_footer(text="Use o comando /comprar2 para adquirir um item de forma interativa.")
         else:
             embed.description += "\n🚧 Essa categoria ainda está em construção ou não possui packs."
 
@@ -132,7 +132,7 @@ class ReturnToMainLojaButton(discord.ui.Button):
                 f"💰 **Seu Saldo:** `{saldo:,} moedas`\n\n".replace(",", ".") +
                 "Bem-vindo à loja de packs & itens!\n"
                 "Aqui você pode explorar os packs disponíveis.\n"
-                "Para comprar, use o comando `/comprar_v2` e siga as instruções interativas.\n\n"
+                "Para comprar, use o comando `/comprar2` e siga as instruções interativas.\n\n"
                 "👇 **Escolha uma categoria de packs no menu abaixo:**"
             ),
             color=discord.Color.green()
@@ -157,7 +157,7 @@ class LojaCog(commands.Cog):
                 f"💰 **Seu Saldo:** `{saldo:,}` moedas\n\n".replace(",", ".") +
                 "Bem-vindo à loja de packs & itens!\n"
                 "Aqui você pode explorar os packs disponíveis.\n"
-                "Para comprar, use o comando `/comprar_v2` e siga as instruções interativas.\n\n"
+                "Para comprar, use o comando `/comprar2` e siga as instruções interativas.\n\n"
                 "👇 **Escolha uma categoria de packs no menu abaixo:**"
             ),
             color=discord.Color.green()
