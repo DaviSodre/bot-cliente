@@ -2,10 +2,10 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 from database import get_usuario
-from cartas import cartas_disponiveis # Importa a lista de todas as cartas disponíveis
+from cartas import cartas_disponiveis 
 from collections import Counter
 
-# --- FUNÇÃO AUXILIAR PARA PEGAR GRUPOS E ERAS ÚNICOS ---
+
 def get_unique_groups_and_eras():
     groups = set()
     eras = set()
@@ -15,7 +15,7 @@ def get_unique_groups_and_eras():
             eras.add(carta["era"])
     return sorted(list(groups)), sorted(list(eras))
 
-# --- ColecaoView (sem mudanças aqui, pois as mudanças são no comando principal) ---
+
 class ColecaoView(discord.ui.View):
     def __init__(self, bot, user_id, filtro_grupo=None, filtro_era=None, page=0):
         super().__init__(timeout=120)
@@ -136,25 +136,25 @@ class Colecao(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    # Autocomplete function for 'grupo'
+    
     async def grupo_autocomplete(self, interaction: discord.Interaction, current: str) -> list[app_commands.Choice[str]]:
         groups, _ = get_unique_groups_and_eras()
         return [
             app_commands.Choice(name=group, value=group)
             for group in groups if current.lower() in group.lower()
-        ][:25] # Limit to 25 choices
+        ][:25] 
 
-    # Autocomplete function for 'era'
+    
     async def era_autocomplete(self, interaction: discord.Interaction, current: str) -> list[app_commands.Choice[str]]:
         _, eras = get_unique_groups_and_eras()
         return [
             app_commands.Choice(name=era, value=era)
             for era in eras if current.lower() in era.lower()
-        ][:25] # Limit to 25 choices
+        ][:25] 
 
     @app_commands.command(name="colecao", description="Mostra o progresso da sua coleção de cartas por grupo ou era")
     @app_commands.describe(grupo="Filtrar por grupo", era="Filtrar por era")
-    # Link autocomplete functions to parameters
+    
     @app_commands.autocomplete(grupo=grupo_autocomplete)
     @app_commands.autocomplete(era=era_autocomplete)
     async def colecao_command(self, interaction: discord.Interaction, grupo: str = None, era: str = None):
