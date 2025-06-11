@@ -219,11 +219,11 @@ class BackButton(discord.ui.Button):
         new_view = SelectPackView(self.user_id, self.bot)
         
         embed = discord.Embed(
-            title="🛒 Loja de Packs V2",
+            title="🛒 Loja de Packs",
             description=(
-                f"Bem-vindo à loja de packs aprimorada!\n"
+                f"Bem-vindo à loja de packs!\n"
                 "Para comprar, siga os passos abaixo:\n"
-                "1️⃣ Escolha um **Grupo** no dropdown abaixo.\n"
+                "1️⃣ Escolha um **Grupo** abaixo.\n"
                 "2️⃣ Em seguida, escolha o **Pack** desejado para ver os detalhes e confirmar a compra.\n\n"
                 "Boa sorte com suas coleções! ✨"
             ),
@@ -245,7 +245,7 @@ class ComprarV2Cog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="comprar_v2", description="Compre packs de cartas de forma interativa")
+    @app_commands.command(name="comprar2", description="Compre packs de cartas de forma interativa")
     async def comprar_v2(self, interaction: discord.Interaction):
         await interaction.response.defer() # Deferir para mostrar que está pensando
 
@@ -253,12 +253,12 @@ class ComprarV2Cog(commands.Cog):
         saldo = user_data.get("moedas", 0)
 
         embed = discord.Embed(
-            title="🛒 Loja de Packs V2",
+            title="🛒 Loja de Packs",
             description=(
                 f"💰 **Saldo:** `{saldo:,}` moedas\n\n".replace(",", ".") +
-                "Bem-vindo à loja de packs aprimorada!\n"
+                "Bem-vindo à loja de packs!\n"
                 "Para comprar, siga os passos abaixo:\n"
-                "1️⃣ Escolha um **Grupo** no dropdown abaixo.\n"
+                "1️⃣ Escolha um **Grupo** abaixo.\n"
                 "2️⃣ Em seguida, escolha o **Pack** desejado para ver os detalhes e confirmar a compra.\n\n"
                 "Boa sorte com suas coleções! ✨"
             ),
