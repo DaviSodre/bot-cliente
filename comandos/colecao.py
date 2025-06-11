@@ -5,25 +5,35 @@ from database import get_usuario
 from cartas import cartas_disponiveis # Importa a lista de todas as cartas disponíveis
 from collections import Counter
 
+# --- FUNÇÃO AUXILIAR PARA PEGAR GRUPOS E ERAS ÚNICOS ---
+def get_unique_groups_and_eras():
+    groups = set()
+    eras = set()
+    for carta in cartas_disponiveis:
+        groups.add(carta["grupo"])
+        if "era" in carta:
+            eras.add(carta["era"])
+    return sorted(list(groups)), sorted(list(eras))
+
+# --- ColecaoView (sem mudanças aqui, pois as mudanças são no comando principal) ---
 class ColecaoView(discord.ui.View):
-    def __init__(self, bot, user_id, filtro_grupo=None, filtro_era=None, page=0): # Adicione 'bot' aqui
+    def __init__(self, bot, user_id, filtro_grupo=None, filtro_era=None, page=0):
         super().__init__(timeout=120)
-        self.bot = bot # Armazene o objeto bot
+        self.bot = bot
         self.user_id = user_id
         self.filtro_grupo = filtro_grupo.lower() if filtro_grupo else None
         self.filtro_era = filtro_era.lower() if filtro_era else None
         self.page = page
-        self.total_paginas = 1 # Inicializa, será atualizado em get_embed
+        self.total_paginas = 1
 
     async def get_collection_data(self):
         user_data = await get_usuario(self.user_id)
-        user_card_ids = user_data.get("cartas", []) # Lista de IDs de cartas do usuário
-        user_card_counts = Counter(user_card_ids) # Conta as duplicatas
+        user_card_ids = user_data.get("cartas", [])
+        user_card_counts = Counter(user_card_ids)
 
-        all_group_names = sorted(list(set(c["grupo"] for c in cartas_disponiveis)))
-        all_era_names = sorted(list(set(c.get("era", "Desconhecida") for c in cartas_disponiveis)))
-
-        # 1. Filtrar todas as cartas disponíveis pelo grupo e/ou era
+        # all_group_names e all_era_names não são mais usados aqui diretamente,
+        # mas serão gerados pela função auxiliar
+        
         filtered_available_cards = []
         for carta in cartas_disponiveis:
             match_group = (self.filtro_grupo is None) or (carta["grupo"].lower() == self.filtro_grupo)
@@ -32,11 +42,8 @@ class ColecaoView(discord.ui.View):
             if match_group and match_era:
                 filtered_available_cards.append(carta)
 
-        # 2. Ordenar as cartas para exibição consistente
-        # Por exemplo, por grupo, depois por nome, depois por raridade
         filtered_available_cards.sort(key=lambda c: (c["grupo"], c["nome"], c["raridade"]))
 
-        # 3. Preparar os dados para exibição (com status de posse)
         collection_status = []
         for carta in filtered_available_cards:
             possessed = carta["id"] in user_card_ids
@@ -47,16 +54,17 @@ class ColecaoView(discord.ui.View):
                 "quantity": quantity
             })
         
-        return collection_status, all_group_names, all_era_names
+        return collection_status
 
     async def get_embed(self):
-        collection_status, all_group_names, all_era_names = await self.get_collection_data()
+        # get_collection_data não retorna mais all_group_names, all_era_names aqui
+        collection_status = await self.get_collection_data()
         
         total_cards_in_filter = len(collection_status)
         possessed_cards_in_filter = sum(1 for item in collection_status if item["possessed"])
 
         self.total_paginas = max(1, (total_cards_in_filter + 8) // 9)
-        self.page = max(0, min(self.page, self.total_paginas - 1)) # Limitar página
+        self.page = max(0, min(self.page, self.total_paginas - 1))
 
         start = self.page * 9
         end = start + 9
@@ -133,7 +141,15 @@ class Colecao(commands.Cog):
         self.bot = bot
 
     @app_commands.command(name="colecao", description="Mostra o progresso da sua coleção de cartas por grupo ou era")
-    @app_commands.describe(grupo="Filtrar por grupo (ex: blackpink)", era="Filtrar por era (ex: drama)")
+    @app_commands.describe(grupo="Filtrar por grupo", era="Filtrar por era")
+    # Autocomplete para o parâmetro 'grupo'
+    @app_commands.autocomplete(grupo=discord.app_commands.autocomplete(
+        lambda i: [app_commands.Choice(name=g, value=g) for g in get_unique_groups_and_eras()[0] if i.data['options'][0]['value'].lower() in g.lower()]
+    ))
+    # Autocomplete para o parâmetro 'era'
+    @app_commands.autocomplete(era=discord.app_commands.autocomplete(
+        lambda i: [app_commands.Choice(name=e, value=e) for e in get_unique_groups_and_eras()[1] if i.data['options'][1]['value'].lower() in e.lower()]
+    ))
     async def colecao_command(self, interaction: discord.Interaction, grupo: str = None, era: str = None):
         await interaction.response.defer()
 
