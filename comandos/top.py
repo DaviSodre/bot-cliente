@@ -7,7 +7,7 @@ class Top(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @app_commands.command(name="top2", description="Mostra o ranking dos usuários")
+    @app_commands.command(name="top", description="Mostra o ranking dos usuários")
     @app_commands.describe(criterio="O critério para o ranking (moedas ou cartas)")
     @app_commands.choices(
         criterio=[
