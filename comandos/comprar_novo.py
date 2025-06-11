@@ -165,6 +165,22 @@ class GroupSelect(discord.ui.Select):
         saldo = user_data.get("moedas", 0)
         new_embed.add_field(name="Seu Saldo Atual", value=f"`{saldo:,}` moedas".replace(",", "."), inline=False)
 
+                # --- ADICIONE ESTE BLOCO DE CÓDIGO AQUI ---
+        if selected_group.lower() == "blackpink":
+            new_embed.set_image(url="https://i.pinimg.com/originals/4f/e7/d0/4fe7d00b623737e2c5131a70c967c0e3.gif")
+        elif selected_group.lower() == "twice":
+            # Exemplo de GIF para TWICE (substitua pelo que você quiser)
+            new_embed.set_image(url="https://i.pinimg.com/originals/ea/f6/db/eaf6dba8ab5d3d07c293e52e68812882.gif")
+        elif selected_group.lower() == "new jeans":
+            # Exemplo de GIF para NEW JEANS
+            new_embed.set_image(url="https://i.pinimg.com/originals/03/24/d5/0324d507b865b7a195c0a43033884667.gif")
+        # Você pode continuar adicionando 'elif' para todos os seus outros grupos
+        # Ex: elif selected_group.lower() == "aespa":
+        #         new_embed.set_image(url="URL_DO_GIF_AESPA")
+        # ... e assim por diante para DREAMCATCHER, GIDLE, etc.
+        # --- FIM DO BLOCO DE CÓDIGO A SER ADICIONADO ---
+
+
 
         # **AQUI ESTÁ A MUDANÇA PRINCIPAL:** Edite a mensagem original.
         await interaction.response.edit_message(
