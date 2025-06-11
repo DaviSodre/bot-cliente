@@ -6,8 +6,9 @@ from cartas import cartas_disponiveis # Importa a lista de todas as cartas dispo
 from collections import Counter
 
 class ColecaoView(discord.ui.View):
-    def __init__(self, user_id, filtro_grupo=None, filtro_era=None, page=0):
+    def __init__(self, bot, user_id, filtro_grupo=None, filtro_era=None, page=0): # Adicione 'bot' aqui
         super().__init__(timeout=120)
+        self.bot = bot # Armazene o objeto bot
         self.user_id = user_id
         self.filtro_grupo = filtro_grupo.lower() if filtro_grupo else None
         self.filtro_era = filtro_era.lower() if filtro_era else None
@@ -136,7 +137,7 @@ class Colecao(commands.Cog):
     async def colecao_command(self, interaction: discord.Interaction, grupo: str = None, era: str = None):
         await interaction.response.defer()
 
-        view = ColecaoView(interaction.user.id, filtro_grupo=grupo, filtro_era=era)
+        view = ColecaoView(self.bot, interaction.user.id, filtro_grupo=grupo, filtro_era=era)
         embed = await view.get_embed()
         await interaction.followup.send(embed=embed, view=view)
 
